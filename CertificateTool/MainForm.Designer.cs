@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             txtCN = new TextBox();
             lblO = new Label();
             txtO = new TextBox();
@@ -41,7 +42,6 @@
             lblKeySize = new Label();
             cmbKeySize = new ComboBox();
             lblKeyPassword = new Label();
-            txtKeyPassword = new TextBox();
             lblSavePath = new Label();
             txtSavePath = new TextBox();
             btnBrowseSave = new Button();
@@ -49,15 +49,17 @@
             lblCN = new Label();
             tabControlMain = new TabControl();
             tabPageCSR = new TabPage();
+            picInfoCSRPage = new PictureBox();
             groupKeyInfo = new GroupBox();
+            passwordBoxCSR = new PasswordBoxWithToggle();
             groupCsrInfo = new GroupBox();
             cmbCountry = new ComboBox();
             tabPagePFX = new TabPage();
+            passwordBoxPFX = new PasswordBoxWithToggle();
             btnBuildPFX = new Button();
             btnBrowsePfxOutput = new Button();
             txtPfxOutput = new TextBox();
             lblPfxOutput = new Label();
-            txtPfxPassword = new TextBox();
             lblPfxPassword = new Label();
             btnBrowseIntermediate = new Button();
             txtIntermediate = new TextBox();
@@ -68,8 +70,10 @@
             btnBrowseCert = new Button();
             txtCertPath = new TextBox();
             lblCertPath = new Label();
+            toolTip1 = new ToolTip(components);
             tabControlMain.SuspendLayout();
             tabPageCSR.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picInfoCSRPage).BeginInit();
             groupKeyInfo.SuspendLayout();
             groupCsrInfo.SuspendLayout();
             tabPagePFX.SuspendLayout();
@@ -77,9 +81,9 @@
             // 
             // txtCN
             // 
-            txtCN.Location = new Point(203, 68);
+            txtCN.Location = new Point(203, 64);
             txtCN.Name = "txtCN";
-            txtCN.Size = new Size(150, 30);
+            txtCN.Size = new Size(230, 30);
             txtCN.TabIndex = 1;
             // 
             // lblO
@@ -93,9 +97,9 @@
             // 
             // txtO
             // 
-            txtO.Location = new Point(203, 148);
+            txtO.Location = new Point(203, 145);
             txtO.Name = "txtO";
-            txtO.Size = new Size(150, 30);
+            txtO.Size = new Size(230, 30);
             txtO.TabIndex = 3;
             // 
             // lblOU
@@ -109,9 +113,9 @@
             // 
             // txtOU
             // 
-            txtOU.Location = new Point(203, 228);
+            txtOU.Location = new Point(203, 226);
             txtOU.Name = "txtOU";
-            txtOU.Size = new Size(150, 30);
+            txtOU.Size = new Size(230, 30);
             txtOU.TabIndex = 5;
             // 
             // lblC
@@ -136,7 +140,7 @@
             // 
             txtST.Location = new Point(203, 388);
             txtST.Name = "txtST";
-            txtST.Size = new Size(150, 30);
+            txtST.Size = new Size(230, 30);
             txtST.TabIndex = 9;
             // 
             // lblL
@@ -150,9 +154,9 @@
             // 
             // txtL
             // 
-            txtL.Location = new Point(203, 468);
+            txtL.Location = new Point(203, 469);
             txtL.Name = "txtL";
-            txtL.Size = new Size(150, 30);
+            txtL.Size = new Size(230, 30);
             txtL.TabIndex = 11;
             // 
             // lblKeySize
@@ -168,9 +172,9 @@
             // 
             cmbKeySize.FormattingEnabled = true;
             cmbKeySize.Items.AddRange(new object[] { "2048", "3072", "4096" });
-            cmbKeySize.Location = new Point(224, 68);
+            cmbKeySize.Location = new Point(224, 64);
             cmbKeySize.Name = "cmbKeySize";
-            cmbKeySize.Size = new Size(182, 31);
+            cmbKeySize.Size = new Size(209, 31);
             cmbKeySize.TabIndex = 13;
             // 
             // lblKeyPassword
@@ -181,14 +185,6 @@
             lblKeyPassword.Size = new Size(171, 23);
             lblKeyPassword.TabIndex = 14;
             lblKeyPassword.Text = "Key 密碼（可不填）";
-            // 
-            // txtKeyPassword
-            // 
-            txtKeyPassword.Location = new Point(224, 142);
-            txtKeyPassword.Name = "txtKeyPassword";
-            txtKeyPassword.Size = new Size(150, 30);
-            txtKeyPassword.TabIndex = 15;
-            txtKeyPassword.UseSystemPasswordChar = true;
             // 
             // lblSavePath
             // 
@@ -203,12 +199,12 @@
             // 
             txtSavePath.Location = new Point(115, 574);
             txtSavePath.Name = "txtSavePath";
-            txtSavePath.Size = new Size(624, 30);
+            txtSavePath.Size = new Size(833, 30);
             txtSavePath.TabIndex = 17;
             // 
             // btnBrowseSave
             // 
-            btnBrowseSave.Location = new Point(759, 572);
+            btnBrowseSave.Location = new Point(954, 572);
             btnBrowseSave.Name = "btnBrowseSave";
             btnBrowseSave.Size = new Size(112, 34);
             btnBrowseSave.TabIndex = 18;
@@ -224,9 +220,9 @@
             btnGenerateCSR.FlatStyle = FlatStyle.Flat;
             btnGenerateCSR.Font = new Font("微軟正黑體", 10F, FontStyle.Bold);
             btnGenerateCSR.ForeColor = Color.White;
-            btnGenerateCSR.Location = new Point(933, 22);
+            btnGenerateCSR.Location = new Point(867, 639);
             btnGenerateCSR.Name = "btnGenerateCSR";
-            btnGenerateCSR.Size = new Size(120, 40);
+            btnGenerateCSR.Size = new Size(171, 40);
             btnGenerateCSR.TabIndex = 19;
             btnGenerateCSR.Text = "產生 CSR 與私鑰";
             btnGenerateCSR.UseVisualStyleBackColor = true;
@@ -249,11 +245,12 @@
             tabControlMain.Location = new Point(0, 0);
             tabControlMain.Name = "tabControlMain";
             tabControlMain.SelectedIndex = 0;
-            tabControlMain.Size = new Size(1080, 656);
+            tabControlMain.Size = new Size(1080, 723);
             tabControlMain.TabIndex = 21;
             // 
             // tabPageCSR
             // 
+            tabPageCSR.Controls.Add(picInfoCSRPage);
             tabPageCSR.Controls.Add(groupKeyInfo);
             tabPageCSR.Controls.Add(groupCsrInfo);
             tabPageCSR.Controls.Add(btnGenerateCSR);
@@ -263,23 +260,42 @@
             tabPageCSR.Location = new Point(4, 32);
             tabPageCSR.Name = "tabPageCSR";
             tabPageCSR.Padding = new Padding(3);
-            tabPageCSR.Size = new Size(1072, 620);
+            tabPageCSR.Size = new Size(1072, 687);
             tabPageCSR.TabIndex = 0;
             tabPageCSR.Text = "產生 CSR";
             tabPageCSR.UseVisualStyleBackColor = true;
             // 
+            // picInfoCSRPage
+            // 
+            picInfoCSRPage.Image = Properties.Resources.information;
+            picInfoCSRPage.Location = new Point(1044, 648);
+            picInfoCSRPage.Name = "picInfoCSRPage";
+            picInfoCSRPage.Size = new Size(20, 20);
+            picInfoCSRPage.SizeMode = PictureBoxSizeMode.StretchImage;
+            picInfoCSRPage.TabIndex = 24;
+            picInfoCSRPage.TabStop = false;
+            picInfoCSRPage.Click += pictureBox1_Click;
+            // 
             // groupKeyInfo
             // 
+            groupKeyInfo.Controls.Add(passwordBoxCSR);
             groupKeyInfo.Controls.Add(lblKeySize);
             groupKeyInfo.Controls.Add(cmbKeySize);
             groupKeyInfo.Controls.Add(lblKeyPassword);
-            groupKeyInfo.Controls.Add(txtKeyPassword);
-            groupKeyInfo.Location = new Point(459, 22);
+            groupKeyInfo.Location = new Point(544, 22);
             groupKeyInfo.Name = "groupKeyInfo";
-            groupKeyInfo.Size = new Size(412, 522);
+            groupKeyInfo.Size = new Size(522, 522);
             groupKeyInfo.TabIndex = 23;
             groupKeyInfo.TabStop = false;
             groupKeyInfo.Text = "私鑰產製資訊";
+            // 
+            // passwordBoxCSR
+            // 
+            passwordBoxCSR.Location = new Point(224, 145);
+            passwordBoxCSR.Name = "passwordBoxCSR";
+            passwordBoxCSR.Password = "";
+            passwordBoxCSR.Size = new Size(209, 30);
+            passwordBoxCSR.TabIndex = 15;
             // 
             // groupCsrInfo
             // 
@@ -297,7 +313,7 @@
             groupCsrInfo.Controls.Add(lblOU);
             groupCsrInfo.Location = new Point(14, 22);
             groupCsrInfo.Name = "groupCsrInfo";
-            groupCsrInfo.Size = new Size(439, 522);
+            groupCsrInfo.Size = new Size(522, 522);
             groupCsrInfo.TabIndex = 22;
             groupCsrInfo.TabStop = false;
             groupCsrInfo.Text = "憑證產製資訊";
@@ -306,19 +322,21 @@
             // 
             cmbCountry.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cmbCountry.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cmbCountry.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbCountry.FormattingEnabled = true;
-            cmbCountry.Location = new Point(203, 303);
+            cmbCountry.Location = new Point(203, 307);
             cmbCountry.Name = "cmbCountry";
-            cmbCountry.Size = new Size(182, 31);
+            cmbCountry.Size = new Size(230, 31);
             cmbCountry.TabIndex = 21;
+            cmbCountry.SelectedIndexChanged += cmbCountry_SelectedIndexChanged;
             // 
             // tabPagePFX
             // 
+            tabPagePFX.Controls.Add(passwordBoxPFX);
             tabPagePFX.Controls.Add(btnBuildPFX);
             tabPagePFX.Controls.Add(btnBrowsePfxOutput);
             tabPagePFX.Controls.Add(txtPfxOutput);
             tabPagePFX.Controls.Add(lblPfxOutput);
-            tabPagePFX.Controls.Add(txtPfxPassword);
             tabPagePFX.Controls.Add(lblPfxPassword);
             tabPagePFX.Controls.Add(btnBrowseIntermediate);
             tabPagePFX.Controls.Add(txtIntermediate);
@@ -332,10 +350,18 @@
             tabPagePFX.Location = new Point(4, 32);
             tabPagePFX.Name = "tabPagePFX";
             tabPagePFX.Padding = new Padding(3);
-            tabPagePFX.Size = new Size(1072, 620);
+            tabPagePFX.Size = new Size(1072, 687);
             tabPagePFX.TabIndex = 1;
             tabPagePFX.Text = "合成 PFX 檔案";
             tabPagePFX.UseVisualStyleBackColor = true;
+            // 
+            // passwordBoxPFX
+            // 
+            passwordBoxPFX.Location = new Point(203, 311);
+            passwordBoxPFX.Name = "passwordBoxPFX";
+            passwordBoxPFX.Password = "";
+            passwordBoxPFX.Size = new Size(217, 38);
+            passwordBoxPFX.TabIndex = 22;
             // 
             // btnBuildPFX
             // 
@@ -345,9 +371,9 @@
             btnBuildPFX.FlatStyle = FlatStyle.Flat;
             btnBuildPFX.Font = new Font("微軟正黑體", 10F, FontStyle.Bold);
             btnBuildPFX.ForeColor = Color.White;
-            btnBuildPFX.Location = new Point(933, 22);
+            btnBuildPFX.Location = new Point(952, 639);
             btnBuildPFX.Name = "btnBuildPFX";
-            btnBuildPFX.Size = new Size(120, 40);
+            btnBuildPFX.Size = new Size(112, 40);
             btnBuildPFX.TabIndex = 14;
             btnBuildPFX.Text = "合成 PFX";
             btnBuildPFX.UseVisualStyleBackColor = true;
@@ -355,7 +381,7 @@
             // 
             // btnBrowsePfxOutput
             // 
-            btnBrowsePfxOutput.Location = new Point(759, 572);
+            btnBrowsePfxOutput.Location = new Point(952, 572);
             btnBrowsePfxOutput.Name = "btnBrowsePfxOutput";
             btnBrowsePfxOutput.Size = new Size(112, 34);
             btnBrowsePfxOutput.TabIndex = 13;
@@ -367,7 +393,7 @@
             // 
             txtPfxOutput.Location = new Point(125, 574);
             txtPfxOutput.Name = "txtPfxOutput";
-            txtPfxOutput.Size = new Size(624, 30);
+            txtPfxOutput.Size = new Size(821, 30);
             txtPfxOutput.TabIndex = 12;
             // 
             // lblPfxOutput
@@ -378,14 +404,6 @@
             lblPfxOutput.Size = new Size(105, 23);
             lblPfxOutput.TabIndex = 11;
             lblPfxOutput.Text = "輸出 PFX 檔";
-            // 
-            // txtPfxPassword
-            // 
-            txtPfxPassword.Location = new Point(203, 308);
-            txtPfxPassword.Name = "txtPfxPassword";
-            txtPfxPassword.Size = new Size(230, 30);
-            txtPfxPassword.TabIndex = 10;
-            txtPfxPassword.UseSystemPasswordChar = true;
             // 
             // lblPfxPassword
             // 
@@ -398,7 +416,7 @@
             // 
             // btnBrowseIntermediate
             // 
-            btnBrowseIntermediate.Location = new Point(759, 227);
+            btnBrowseIntermediate.Location = new Point(952, 225);
             btnBrowseIntermediate.Name = "btnBrowseIntermediate";
             btnBrowseIntermediate.Size = new Size(112, 34);
             btnBrowseIntermediate.TabIndex = 8;
@@ -410,7 +428,7 @@
             // 
             txtIntermediate.Location = new Point(203, 227);
             txtIntermediate.Name = "txtIntermediate";
-            txtIntermediate.Size = new Size(546, 30);
+            txtIntermediate.Size = new Size(743, 30);
             txtIntermediate.TabIndex = 7;
             // 
             // lblIntermediate
@@ -424,7 +442,7 @@
             // 
             // btnBrowseKey
             // 
-            btnBrowseKey.Location = new Point(759, 149);
+            btnBrowseKey.Location = new Point(952, 149);
             btnBrowseKey.Name = "btnBrowseKey";
             btnBrowseKey.Size = new Size(112, 34);
             btnBrowseKey.TabIndex = 5;
@@ -436,13 +454,13 @@
             // 
             txtKeyPath.Location = new Point(203, 149);
             txtKeyPath.Name = "txtKeyPath";
-            txtKeyPath.Size = new Size(546, 30);
+            txtKeyPath.Size = new Size(743, 30);
             txtKeyPath.TabIndex = 4;
             // 
             // lblKeyPath
             // 
             lblKeyPath.AutoSize = true;
-            lblKeyPath.Location = new Point(6, 149);
+            lblKeyPath.Location = new Point(6, 155);
             lblKeyPath.Name = "lblKeyPath";
             lblKeyPath.Size = new Size(115, 23);
             lblKeyPath.TabIndex = 3;
@@ -450,7 +468,7 @@
             // 
             // btnBrowseCert
             // 
-            btnBrowseCert.Location = new Point(759, 68);
+            btnBrowseCert.Location = new Point(952, 68);
             btnBrowseCert.Name = "btnBrowseCert";
             btnBrowseCert.Size = new Size(112, 34);
             btnBrowseCert.TabIndex = 2;
@@ -462,29 +480,35 @@
             // 
             txtCertPath.Location = new Point(203, 68);
             txtCertPath.Name = "txtCertPath";
-            txtCertPath.Size = new Size(546, 30);
+            txtCertPath.Size = new Size(743, 30);
             txtCertPath.TabIndex = 1;
             // 
             // lblCertPath
             // 
             lblCertPath.AutoSize = true;
-            lblCertPath.Location = new Point(6, 68);
+            lblCertPath.Location = new Point(6, 74);
             lblCertPath.Name = "lblCertPath";
             lblCertPath.Size = new Size(178, 23);
             lblCertPath.TabIndex = 0;
             lblCertPath.Text = "主憑證（.pem, .crt）";
             // 
+            // toolTip1
+            // 
+            toolTip1.Popup += toolTip1_Popup;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(11F, 23F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1080, 656);
+            ClientSize = new Size(1080, 723);
             Controls.Add(tabControlMain);
             Name = "MainForm";
             Text = "Form1";
+            Load += MainForm_Load_1;
             tabControlMain.ResumeLayout(false);
             tabPageCSR.ResumeLayout(false);
             tabPageCSR.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picInfoCSRPage).EndInit();
             groupKeyInfo.ResumeLayout(false);
             groupKeyInfo.PerformLayout();
             groupCsrInfo.ResumeLayout(false);
@@ -508,7 +532,6 @@
         private Label lblKeySize;
         private ComboBox cmbKeySize;
         private Label lblKeyPassword;
-        private TextBox txtKeyPassword;
         private Label lblSavePath;
         private TextBox txtSavePath;
         private Button btnBrowseSave;
@@ -525,7 +548,6 @@
         private Button btnBrowsePfxOutput;
         private TextBox txtPfxOutput;
         private Label lblPfxOutput;
-        private TextBox txtPfxPassword;
         private Label lblPfxPassword;
         private Button btnBrowseIntermediate;
         private TextBox txtIntermediate;
@@ -535,5 +557,9 @@
         private GroupBox groupCsrInfo;
         private GroupBox groupKeyInfo;
         private ComboBox cmbCountry;
+        private PasswordBoxWithToggle passwordBoxPFX;
+        private PasswordBoxWithToggle passwordBoxCSR;
+        private PictureBox picInfoCSRPage;
+        private ToolTip toolTip1;
     }
 }

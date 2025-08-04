@@ -15,6 +15,20 @@ namespace CertificateTool
         private void MainForm_Load(object sender, EventArgs e)
         {
             LoadCountryCodes();
+
+            toolTip1.SetToolTip(picInfoCSRPage,
+                "這個頁面會產生一組：\n" +
+                "1. 私鑰 (.key)：可加密，請妥善保存\n" +
+                "2. 憑證簽署請求 (CSR)：提供給憑證單位簽發憑證\n\n" +
+                "各欄位說明：\n" +
+                "- CN：主機名稱（如 www.example.com）\n" +
+                "- O：組織名稱（公司名）\n" +
+                "- OU：部門名稱（可選）\n" +
+                "- C：國家（台灣填 TW）\n" +
+                "- ST / L：州、省或城市（依據需求填寫）\n" +
+                "- Key Size：建議 2048 或以上\n" +
+                "- Key 密碼：如輸入，私鑰將加密，較安全"
+            );
         }
         private void LoadCountryCodes()
         {
@@ -52,7 +66,7 @@ namespace CertificateTool
                 string subject = $"CN={txtCN.Text}, O={txtO.Text}, OU={txtOU.Text}, C={(cmbCountry.SelectedItem as CountryItem)?.Code ?? ""}, ST={txtST.Text}, L={txtL.Text}";
                 int keySize = int.Parse(cmbKeySize.SelectedItem.ToString());
                 string savePath = txtSavePath.Text;
-                string password = txtKeyPassword.Text;
+                string password = passwordBoxCSR.Password;
 
                 CsrGenerator.GenerateCsrAndKey(subject, keySize, savePath, password);
 
@@ -108,7 +122,7 @@ namespace CertificateTool
                     txtCertPath.Text,
                     txtKeyPath.Text,
                     txtPfxOutput.Text,
-                    txtPfxPassword.Text,
+                    passwordBoxPFX.Password,
                     string.IsNullOrEmpty(txtIntermediate.Text) ? null : txtIntermediate.Text
                 );
 
@@ -130,6 +144,30 @@ namespace CertificateTool
         }
 
 
+        private void passwordBoxWithToggle1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCountry_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+            
+        }
     }
 }
 public class CountryItem
