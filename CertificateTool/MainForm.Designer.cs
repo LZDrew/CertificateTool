@@ -188,6 +188,7 @@
             txtKeyPassword.Name = "txtKeyPassword";
             txtKeyPassword.Size = new Size(150, 30);
             txtKeyPassword.TabIndex = 15;
+            txtKeyPassword.UseSystemPasswordChar = true;
             // 
             // lblSavePath
             // 
@@ -384,6 +385,7 @@
             txtPfxPassword.Name = "txtPfxPassword";
             txtPfxPassword.Size = new Size(230, 30);
             txtPfxPassword.TabIndex = 10;
+            txtPfxPassword.UseSystemPasswordChar = true;
             // 
             // lblPfxPassword
             // 
