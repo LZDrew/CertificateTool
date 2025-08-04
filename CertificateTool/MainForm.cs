@@ -166,7 +166,44 @@ namespace CertificateTool
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)
         {
-            
+
+        }
+        private void btnBrowsePfxInspect_Click(object sender, EventArgs e)
+        {
+            string filePath = BrowseFile("PFX พฬรา (*.pfx)|*.pfx");
+            if (!string.IsNullOrEmpty(filePath))
+                txtPfxInspectPath.Text = filePath;
+        }
+
+        private void btnInspectPfx_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string path = txtPfxInspectPath.Text;
+                string password = passwordBoxInspect.Password;
+
+                var report = PfxInspector.InspectPfx(path, password);
+                txtPfxInfo.Text = report;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"ฟ๙ป~กG{ex.Message}");
+            }
+        }
+
+        private void lblPfxPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblIntermediate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblKeySize_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

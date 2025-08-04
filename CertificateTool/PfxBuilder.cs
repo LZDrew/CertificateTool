@@ -29,7 +29,11 @@ namespace CertificateTool
             }
 
             // 匯出為 PFX
-            var pfxBytes = certWithKey.Export(X509ContentType.Pfx, password);
+            var collection = new X509Certificate2Collection();
+            collection.Add(certWithKey); // 主憑證＋私鑰
+            collection.AddRange(chain);  // 加入中繼（如果有）
+
+            var pfxBytes = collection.Export(X509ContentType.Pfx, password);
             File.WriteAllBytes(outputPath, pfxBytes);
         }
 

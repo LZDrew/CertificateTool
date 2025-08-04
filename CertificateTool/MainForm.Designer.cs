@@ -70,6 +70,14 @@
             btnBrowseCert = new Button();
             txtCertPath = new TextBox();
             lblCertPath = new Label();
+            PFXInspector = new TabPage();
+            txtPfxInfo = new RichTextBox();
+            btnInspectPfx = new Button();
+            passwordBoxInspect = new PasswordBoxWithToggle();
+            lblInspectPassword = new Label();
+            btnBrowsePfxInspect = new Button();
+            txtPfxInspectPath = new TextBox();
+            lblPfxInspect = new Label();
             toolTip1 = new ToolTip(components);
             tabControlMain.SuspendLayout();
             tabPageCSR.SuspendLayout();
@@ -77,6 +85,7 @@
             groupKeyInfo.SuspendLayout();
             groupCsrInfo.SuspendLayout();
             tabPagePFX.SuspendLayout();
+            PFXInspector.SuspendLayout();
             SuspendLayout();
             // 
             // txtCN
@@ -164,9 +173,10 @@
             lblKeySize.AutoSize = true;
             lblKeySize.Location = new Point(6, 68);
             lblKeySize.Name = "lblKeySize";
-            lblKeySize.Size = new Size(79, 23);
+            lblKeySize.Size = new Size(214, 23);
             lblKeySize.TabIndex = 12;
-            lblKeySize.Text = "Key Size";
+            lblKeySize.Text = "Key Size（建議選 2048）";
+            lblKeySize.Click += lblKeySize_Click;
             // 
             // cmbKeySize
             // 
@@ -184,7 +194,7 @@
             lblKeyPassword.Name = "lblKeyPassword";
             lblKeyPassword.Size = new Size(171, 23);
             lblKeyPassword.TabIndex = 14;
-            lblKeyPassword.Text = "Key 密碼（可不填）";
+            lblKeyPassword.Text = "Key 密碼（可留空）";
             // 
             // lblSavePath
             // 
@@ -214,6 +224,7 @@
             // 
             // btnGenerateCSR
             // 
+            btnGenerateCSR.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnGenerateCSR.BackColor = Color.FromArgb(0, 123, 255);
             btnGenerateCSR.FlatAppearance.BorderSize = 0;
             btnGenerateCSR.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 144, 255);
@@ -241,6 +252,7 @@
             // 
             tabControlMain.Controls.Add(tabPageCSR);
             tabControlMain.Controls.Add(tabPagePFX);
+            tabControlMain.Controls.Add(PFXInspector);
             tabControlMain.Dock = DockStyle.Fill;
             tabControlMain.Location = new Point(0, 0);
             tabControlMain.Name = "tabControlMain";
@@ -262,11 +274,12 @@
             tabPageCSR.Padding = new Padding(3);
             tabPageCSR.Size = new Size(1072, 687);
             tabPageCSR.TabIndex = 0;
-            tabPageCSR.Text = "產生 CSR";
+            tabPageCSR.Text = "產生 CSR 和私鑰";
             tabPageCSR.UseVisualStyleBackColor = true;
             // 
             // picInfoCSRPage
             // 
+            picInfoCSRPage.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             picInfoCSRPage.Image = Properties.Resources.information;
             picInfoCSRPage.Location = new Point(1044, 648);
             picInfoCSRPage.Name = "picInfoCSRPage";
@@ -365,6 +378,7 @@
             // 
             // btnBuildPFX
             // 
+            btnBuildPFX.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBuildPFX.BackColor = Color.FromArgb(0, 123, 255);
             btnBuildPFX.FlatAppearance.BorderSize = 0;
             btnBuildPFX.FlatAppearance.MouseOverBackColor = Color.FromArgb(30, 144, 255);
@@ -410,9 +424,10 @@
             lblPfxPassword.AutoSize = true;
             lblPfxPassword.Location = new Point(6, 311);
             lblPfxPassword.Name = "lblPfxPassword";
-            lblPfxPassword.Size = new Size(82, 23);
+            lblPfxPassword.Size = new Size(172, 23);
             lblPfxPassword.TabIndex = 9;
-            lblPfxPassword.Text = "PFX 密碼";
+            lblPfxPassword.Text = "PFX 密碼（可留空）";
+            lblPfxPassword.Click += lblPfxPassword_Click;
             // 
             // btnBrowseIntermediate
             // 
@@ -439,6 +454,7 @@
             lblIntermediate.Size = new Size(154, 23);
             lblIntermediate.TabIndex = 6;
             lblIntermediate.Text = "中繼憑證（可選）";
+            lblIntermediate.Click += lblIntermediate_Click;
             // 
             // btnBrowseKey
             // 
@@ -492,6 +508,90 @@
             lblCertPath.TabIndex = 0;
             lblCertPath.Text = "主憑證（.pem, .crt）";
             // 
+            // PFXInspector
+            // 
+            PFXInspector.Controls.Add(txtPfxInfo);
+            PFXInspector.Controls.Add(btnInspectPfx);
+            PFXInspector.Controls.Add(passwordBoxInspect);
+            PFXInspector.Controls.Add(lblInspectPassword);
+            PFXInspector.Controls.Add(btnBrowsePfxInspect);
+            PFXInspector.Controls.Add(txtPfxInspectPath);
+            PFXInspector.Controls.Add(lblPfxInspect);
+            PFXInspector.Location = new Point(4, 32);
+            PFXInspector.Name = "PFXInspector";
+            PFXInspector.Padding = new Padding(3);
+            PFXInspector.Size = new Size(1072, 687);
+            PFXInspector.TabIndex = 2;
+            PFXInspector.Text = "檢視憑證內容";
+            PFXInspector.UseVisualStyleBackColor = true;
+            // 
+            // txtPfxInfo
+            // 
+            txtPfxInfo.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            txtPfxInfo.Location = new Point(6, 226);
+            txtPfxInfo.Name = "txtPfxInfo";
+            txtPfxInfo.Size = new Size(1058, 400);
+            txtPfxInfo.TabIndex = 6;
+            txtPfxInfo.Text = "";
+            // 
+            // btnInspectPfx
+            // 
+            btnInspectPfx.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnInspectPfx.BackColor = Color.FromArgb(0, 123, 255);
+            btnInspectPfx.FlatStyle = FlatStyle.Flat;
+            btnInspectPfx.Font = new Font("微軟正黑體", 10F, FontStyle.Bold);
+            btnInspectPfx.ForeColor = Color.White;
+            btnInspectPfx.Location = new Point(952, 641);
+            btnInspectPfx.Name = "btnInspectPfx";
+            btnInspectPfx.Size = new Size(112, 40);
+            btnInspectPfx.TabIndex = 5;
+            btnInspectPfx.Text = "檢視資訊";
+            btnInspectPfx.UseVisualStyleBackColor = false;
+            btnInspectPfx.Click += btnInspectPfx_Click;
+            // 
+            // passwordBoxInspect
+            // 
+            passwordBoxInspect.Location = new Point(203, 155);
+            passwordBoxInspect.Name = "passwordBoxInspect";
+            passwordBoxInspect.Password = "";
+            passwordBoxInspect.Size = new Size(314, 54);
+            passwordBoxInspect.TabIndex = 4;
+            // 
+            // lblInspectPassword
+            // 
+            lblInspectPassword.AutoSize = true;
+            lblInspectPassword.Location = new Point(6, 155);
+            lblInspectPassword.Name = "lblInspectPassword";
+            lblInspectPassword.Size = new Size(172, 23);
+            lblInspectPassword.TabIndex = 3;
+            lblInspectPassword.Text = "憑證密碼（可留空）";
+            // 
+            // btnBrowsePfxInspect
+            // 
+            btnBrowsePfxInspect.Location = new Point(954, 68);
+            btnBrowsePfxInspect.Name = "btnBrowsePfxInspect";
+            btnBrowsePfxInspect.Size = new Size(112, 34);
+            btnBrowsePfxInspect.TabIndex = 2;
+            btnBrowsePfxInspect.Text = "瀏覽";
+            btnBrowsePfxInspect.UseVisualStyleBackColor = true;
+            btnBrowsePfxInspect.Click += btnBrowsePfxInspect_Click;
+            // 
+            // txtPfxInspectPath
+            // 
+            txtPfxInspectPath.Location = new Point(203, 68);
+            txtPfxInspectPath.Name = "txtPfxInspectPath";
+            txtPfxInspectPath.Size = new Size(743, 30);
+            txtPfxInspectPath.TabIndex = 1;
+            // 
+            // lblPfxInspect
+            // 
+            lblPfxInspect.AutoSize = true;
+            lblPfxInspect.Location = new Point(6, 74);
+            lblPfxInspect.Name = "lblPfxInspect";
+            lblPfxInspect.Size = new Size(154, 23);
+            lblPfxInspect.TabIndex = 0;
+            lblPfxInspect.Text = "選擇欲檢視的 PFX";
+            // 
             // toolTip1
             // 
             toolTip1.Popup += toolTip1_Popup;
@@ -515,6 +615,8 @@
             groupCsrInfo.PerformLayout();
             tabPagePFX.ResumeLayout(false);
             tabPagePFX.PerformLayout();
+            PFXInspector.ResumeLayout(false);
+            PFXInspector.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -561,5 +663,13 @@
         private PasswordBoxWithToggle passwordBoxCSR;
         private PictureBox picInfoCSRPage;
         private ToolTip toolTip1;
+        private TabPage PFXInspector;
+        private TextBox txtPfxInspectPath;
+        private Label lblPfxInspect;
+        private Button btnInspectPfx;
+        private PasswordBoxWithToggle passwordBoxInspect;
+        private Label lblInspectPassword;
+        private Button btnBrowsePfxInspect;
+        private RichTextBox txtPfxInfo;
     }
 }
